@@ -12,20 +12,16 @@ let handler = async(m, { conn }) => {
 Sekedar meramaikan, atau juga jika ada informasi mengenai bot.
 *Group 1*
 ${_gc1}
+
 *Group 2*
 ${_gc2}
+
 *Group 3*
 ${_gc3}
+
 Harap patuhi rules dan peraturan pada masing masing group ya! Terimakasih.
 `.trim()
-        await conn.reply(m.chat, caption, m, { contextInfo: {
-            externalAdReply: {
-                sourceUrl: 'https://youtu.be/JktyyWr1N6I',
-                title: 'Rules',
-                body: 'Haruno',
-                thumbnailUrl: global.image
-            }
-        }})
+        await conn.reply(m.chat, caption, m)
     } catch (e) {
         let res = await fetch('https://raw.githubusercontent.com/FadliDarmawan/haruno-server/main/files/src.json')
         let json = await res.json()
@@ -34,20 +30,16 @@ Harap patuhi rules dan peraturan pada masing masing group ya! Terimakasih.
 Sekedar meramaikan, atau juga jika ada informasi mengenai bot.
 *Group 1*
 ${json.links[0]}
+
 *Group 2*
 ${json.links[1]}
+
 *Group 3*
 ${json.links[2]}
+
 Harap patuhi rules dan peraturan pada masing masing group ya! Terimakasih.
 `.trim()
-    await conn.reply(m.chat, tulisan, m, { contextInfo: {
-        externalAdReply: {
-            sourceUrl: 'https://youtu.be/JktyyWr1N6I',
-            title: 'Rules',
-            body: 'Haruno',
-            thumbnailUrl: global.image
-        }
-    }})
+    await conn.reply(m.chat, tulisan, m)
     }
 }
 handler.help = ['groupofficial']

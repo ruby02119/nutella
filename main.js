@@ -1,5 +1,4 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-process.on('uncaughtException', console.error)
 import './config.js';
 
 import { createRequire } from "module"; // Bring in the ability to create the 'require' method
@@ -25,17 +24,17 @@ import { tmpdir } from 'os';
 import { format } from 'util';
 import { makeWASocket, protoType, serialize } from './lib/simple.js';
 import { Low, JSONFile } from 'lowdb';
-// import pino from 'pino';
+import pino from 'pino';
 import {
   mongoDB,
   mongoDBV2
 } from './lib/mongoDB.js';
-import storeSystem from './lib/store.js'
-import memory from './lib/memory.js'
-
 const {
+  useSingleFileAuthState,
   DisconnectReason
 } = await import('@adiwajshing/baileys')
+import memory from './lib/memory.js'
+
 
 const { CONNECTING } = ws
 const { chain } = lodash
@@ -55,7 +54,6 @@ const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
-// global.opts['db'] = process.env['db']
 opts.db = 'mongodb+srv://haruno:harunoadmin@haruno.agdrq.mongodb.net/?retryWrites=true&w=majority'
 
 global.db = new Low(
@@ -92,14 +90,14 @@ global.loadDatabase = async function loadDatabase() {
 loadDatabase()
 
 global.authFile = `${opts._[0] || 'haruno'}.store.json`
-const { state, saveState } = storeSystem.useSingleFileAuthState(global.authFile)
-const store = memory.makeInMemoryStore()
+const { state, saveState } = useSingleFileAuthState(global.authFile)
+const re = memory.makeInMemoryStore
 
 const connectionOptions = {
   printQRInTerminal: true,
   auth: state,
   downloadHistory: false,
-  getMessage: async (key) => (store.loadMessage(key.remoteJid, key.id) || store.loadMessage(key.id) || {}).message || null
+  getMessage: async (key) => (re.loadMessage(key.remoteJid, key.id) || re.loadMessage(key.id) || {}).message || null
   // logger: pino({ level: 'trace' })
 }
 
@@ -182,7 +180,7 @@ global.reloadHandler = async function (restatConn) {
   conn.groupsUpdate = handler.groupsUpdate.bind(global.conn)
   conn.onDelete = handler.deleteUpdate.bind(global.conn)
   conn.connectionUpdate = connectionUpdate.bind(global.conn)
-  conn.credsUpdate = saveState.bind(global.conn, true)
+  conn.credsUpdate = saveState.bind(global.conn)
 
   conn.ev.on('messages.upsert', conn.handler)
   conn.ev.on('group-participants.update', conn.participantsUpdate)

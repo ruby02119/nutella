@@ -1,7 +1,7 @@
 import { instagramStalk } from '@bochilteam/scraper'
 
 let handler= async (m, { args, usedPrefix, command }) => {
-    if (!args[0]) throw `Example use ${usedPrefix}${command} <username>`
+    if (!args[0]) throw `Harap masukkan username instagram yang ingin distalk.\n\nContoh: ${usedPrefix + command} takomayuyicos`
     const {
         username,
         name,

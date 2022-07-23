@@ -1,5 +1,5 @@
 let handler = async (m, { text, command, usedPrefix }) => {
-    if (!text) throw `Use example ${usedPrefix}${command} i'm alien?`
+    if (!text) throw `Kurang tau`
     m.reply(`"${[
         'Mungkin suatu hari',
         'Tidak juga',
@@ -7,7 +7,10 @@ let handler = async (m, { text, command, usedPrefix }) => {
         'Kurasa tidak',
         'Ya',
         'Coba tanya lagi',
-        'Tidak ada'
+        'Tidak ada',
+        'Yo ndak tau',
+        'Kurang tawu',
+        'Yang tawu tawu ajah'
     ].getRandom()}."`)
 }
 handler.help = ['kerang', 'kerangajaib'].map(v => v + ' <teks>')

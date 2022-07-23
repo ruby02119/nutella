@@ -23,14 +23,14 @@ Syarat Ketentuan Haruno Bot
 3. Harunobot akan memberlakukan hukuman: block atau ban terhadap users yang melanggar peraturan.
 Request fitur, kritik saran, atau laporan bug silahkan chat ke owner.
 
-Kebijakan Peraturan per: 20 April 2022
+Kebijakan Peraturan per: 12 Juli 2022
 ${watermark}`.trim()
     await conn.reply(m.chat, caption, m, { contextInfo: {
         externalAdReply: {
             sourceUrl: 'https://youtu.be/JktyyWr1N6I',
             title: 'Rules',
             body: 'Haruno',
-            thumbnailUrl: global.image
+            thumbnailUrl: image
         }
     }})
 }
