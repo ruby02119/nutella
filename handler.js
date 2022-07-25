@@ -510,7 +510,7 @@ export async function participantsUpdate({ id, participants, action }) {
                             (chat.sBye || this.bye || Connection.conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
                         let wel = `Welcome new participant`
                         let lea = `Group participant leave`
-                        this.sendFile(id, pp, 'pp.jpg', text, null, false, { mentions: [user], contextInfo: {
+                        await this.sendFile(id, pp, 'pp.jpg', text, null, false, { mentions: [user], contextInfo: {
                             externalAdReply: {
                                 title: action === 'add' ? wel : lea,
                                 body: 'Haruno',
