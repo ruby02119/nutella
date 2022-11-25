@@ -5,7 +5,8 @@ import { fileURLToPath } from 'url'
 global.owner = [
   ['628112958665', 'Fadli', true],
   ['6288215569001', 'Zaki', true],
-  ['628998512588', 'Rafli', true]
+  ['628998512588', 'Rafli', true],
+  ['6285882318915', 'Rubys', true]
   // [number, dia creator/owner?, dia developer?]
 ] // Put your number here
 global.mods = [] // Want some help?
@@ -30,8 +31,8 @@ global.APIKeys = { // APIKey Here
 }
 
 // Sticker WM
-global.packname = 'Haruno'
-global.author = 'Fadli'
+global.packname = 'Rubys'
+global.author = 'The Villian'
 
 // Haruno global
 global.image = 'https://telegra.ph/file/0eb764fc1b4fd2bc2b968.jpg'
